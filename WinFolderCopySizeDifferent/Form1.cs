@@ -14,6 +14,7 @@ namespace WinFolderCopySizeDifferent
 {
     public partial class Form1 : Form
     {
+        #region "initailize"
         FileInfo sourceFile;
         FileInfo targetFile;
         DirectoryInfo dirInfo;
@@ -21,9 +22,33 @@ namespace WinFolderCopySizeDifferent
         string sourceDir = String.Empty;
         string targetDir = String.Empty;
         int sleepTime = 500;
+
         public Form1()
         {
             InitializeComponent();
+        }
+        #endregion
+
+        #region "events"
+        private void btnSourceDir_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialogSource.ShowDialog();
+            txtSourceDir.Text = folderBrowserDialogSource.SelectedPath;
+            sourceDir = txtSourceDir.Text;
+        }
+
+        private void btnDestinationDir_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialogDestination.ShowDialog();
+            txtDestinationDir.Text = folderBrowserDialogDestination.SelectedPath;
+            targetDir = txtDestinationDir.Text;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtDestinationDir.Text = string.Empty;
+            txtSourceDir.Text = string.Empty;
+            rtxtResult.Text = string.Empty;
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
@@ -33,6 +58,7 @@ namespace WinFolderCopySizeDifferent
             t1.Start();
             //ThreadWorker();
         }
+        #endregion
 
         #region "Utility"
         private void Log(string txtLog)
@@ -107,5 +133,19 @@ namespace WinFolderCopySizeDifferent
         }
         #endregion
 
+        private void rtxtResult_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDestinationDir_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSourceDir_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
